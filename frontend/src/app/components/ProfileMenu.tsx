@@ -1,9 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { Avatar, Box, BoxProps, Button, ButtonProps, Divider, Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, HStack, Icon, IconButton, Text, VStack, useColorModeValue, useDisclosure } from "@chakra-ui/react";
+import { Avatar, Button, ButtonProps, Divider, Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, HStack, Icon, IconButton, Text, VStack, useColorModeValue, useDisclosure } from "@chakra-ui/react";
 import React, { useRef } from "react";
-import { Link, LinkProps } from "@chakra-ui/next-js";
 import { FaArrowRightFromBracket, FaBell, FaChartColumn, FaChartPie, FaClockRotateLeft, FaEnvelope, FaGear, FaLandmarkFlag, FaUser, FaXmark } from "react-icons/fa6";
 import { IconType } from "react-icons";
+import NavLink from "./NavLink";
 
 type ProfileLink = {
   name: string;
@@ -83,42 +83,25 @@ const profileLinks: { group: string; links: ProfileLink[] }[] = [
   },
 ];
 
-
-const NavLink: React.FC<LinkProps> = ({ children, ...otherProps }) => {
-  return (
-    <Link
-      {...otherProps}
-      w='100%'
-      px={2}
-      py={1}
-      rounded={4}
-      _hover={{
-        textDecoration: 'none',
-        color: useColorModeValue('oliveGreen.700', 'oliveGreen.700'),
-        bg: useColorModeValue('oliveGreen.50', 'oliveGreen.50')
-      }}
-    >
-      {children}
-    </Link>
-  )
-};
-
 const DrawerSection: React.FC<DrawerSectionProps> = ({ links }) => {
   return (
     <>
       <Divider />
-      {links.map((link) => {
-        const { name, href, icon } = link;
-        
-        return (
-          <NavLink key={name} href={href}>
-            <HStack spacing={4}>
-              <Icon as={icon} />
-              <Text fontSize="sm" fontWeight={400}>{name}</Text>
-            </HStack>
-          </NavLink>
-        );
-    })}
+      {links.map((link) => (        
+        <NavLink
+          key={link.name}
+          href={link.href}
+          _hover={{
+            color: useColorModeValue('oliveGreen.700', 'oliveGreen.700'),
+            bg: useColorModeValue('oliveGreen.50', 'oliveGreen.50')
+          }}
+        >
+          <HStack spacing={4}>
+            <Icon as={link.icon} />
+            <Text fontSize="sm" fontWeight={400}>{link.name}</Text>
+          </HStack>
+        </NavLink>
+      ))}
     </>
   )
 };

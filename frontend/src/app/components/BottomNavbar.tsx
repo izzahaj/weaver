@@ -38,14 +38,18 @@ const BottomNavbar: React.FC = () => {
     <Box hideFrom="sm" as='nav' px={4} bgColor={'maroon.800'} color={'ivory.50'}>
       <HStack h={`${NAVBAR_HEIGHT_PX}px`} alignItems={'center'} justifyContent='space-evenly'>
         {links.map((link) => (
-          <NavLink key={link.name} href={link.href}>
+          <NavLink 
+            key={link.name}
+            href={link.href}
+            _hover={{ bg: useColorModeValue('maroon.700', 'maroon.700') }}
+          >
             <VStack spacing={1}>
               <Icon as={link.icon} boxSize={5} />
               <Text fontSize={'3xs'} fontWeight={600}>{link.name}</Text>
             </VStack>
           </NavLink>
         ))}
-        <NavLink href={'/profile'}>
+        <NavLink href={'/profile'} _hover={{ bg: useColorModeValue('maroon.700', 'maroon.700') }}>
           <Avatar
             name={user?.name}
             size='sm'

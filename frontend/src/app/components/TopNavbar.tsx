@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, HStack, Icon, IconButton, Text, VStack } from "@chakra-ui/react";
+import { Box, HStack, Icon, IconButton, Text, VStack, useColorModeValue } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
 import React from "react";
 import { NAVBAR_HEIGHT_PX } from "../utils/constants";
@@ -49,14 +49,24 @@ const TopNavbar: React.FC = () => {
           <Logo />
           <HStack hideBelow={'lg'}>
             {links.map((link) => (
-              <NavLink key={link.name} href={link.href} fontWeight={600} fontSize={'sm'}>
+              <NavLink
+                key={link.name}
+                href={link.href}
+                fontWeight={600}
+                fontSize={'sm'}
+                _hover={{ bg: useColorModeValue('maroon.700', 'maroon.700') }}
+              >
                 {link.name}
               </NavLink>
             ))}
           </HStack>
           <HStack spacing={0} hideBelow='sm' hideFrom='lg'>
             {links.map((link) => (
-              <NavLink key={link.name} href={link.href}>
+              <NavLink
+                key={link.name}
+                href={link.href}
+                _hover={{ bg: useColorModeValue('maroon.700', 'maroon.700') }}
+              >
                 <VStack spacing={1}>
                   <Icon as={link.icon} boxSize={[5, 5, 4]}/>
                   <Text fontSize={['3xs', '3xs', '2xs']} fontWeight={600}>{link.name}</Text>
