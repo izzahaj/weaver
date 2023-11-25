@@ -55,7 +55,14 @@ const NavSearchBar: React.FC<BoxProps> = (props) => {
   useOnBlur(searchRef, handleBlur);
 
   return (
-    <Box {...props} borderRadius={showSuggestions ? '4px 4px 0 0' : 15} position={'relative'} w={'100%'} bgColor={'ivory.50'} shadow='0px 1px 1px 0px black'>
+    <Box
+      {...props}
+      borderRadius={showSuggestions ? '4px 4px 0 0' : 15}
+      position={'relative'}
+      w={'100%'}
+      bgColor={'ivory.50'}
+      shadow='0px 1px 1px 0px black'
+    >
       <InputGroup ref={searchRef} alignItems={'center'} size={'sm'} color={'maroon.800'}>
         <InputLeftElement rounded={15}>
           <IconButton

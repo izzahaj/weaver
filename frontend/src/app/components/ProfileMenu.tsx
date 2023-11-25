@@ -95,6 +95,7 @@ const DrawerSection: React.FC<DrawerSectionProps> = ({ links }) => {
             color: useColorModeValue('oliveGreen.700', 'oliveGreen.700'),
             bg: useColorModeValue('oliveGreen.50', 'oliveGreen.50')
           }}
+          w='100%'
         >
           <HStack spacing={4}>
             <Icon as={link.icon} />

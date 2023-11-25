@@ -1,6 +1,6 @@
 'use client';
 
-import { Avatar, Box, HStack, Icon, Text, VStack, useColorModeValue } from "@chakra-ui/react";
+import { Avatar, Box, BoxProps, Flex, HStack, Icon, Text, VStack, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import { NAVBAR_HEIGHT_PX } from "../utils/constants";
 import { FaCompass, FaHouse, FaToolbox } from "react-icons/fa6";
@@ -31,17 +31,18 @@ const links = [
   },
 ];
 
-const BottomNavbar: React.FC = () => {
+const BottomNavbar: React.FC<BoxProps> = (props) => {
   const { user } = useAuth0();
 
   return (
-    <Box hideFrom="sm" as='nav' px={4} bgColor={'maroon.800'} color={'ivory.50'}>
+    <Box {...props} as='nav' px={4} bgColor={'maroon.800'} color={'ivory.50'}>
       <HStack h={`${NAVBAR_HEIGHT_PX}px`} alignItems={'center'} justifyContent='space-evenly'>
         {links.map((link) => (
           <NavLink 
             key={link.name}
             href={link.href}
             _hover={{ bg: useColorModeValue('maroon.700', 'maroon.700') }}
+            w='100%'
           >
             <VStack spacing={1}>
               <Icon as={link.icon} boxSize={5} />
@@ -49,13 +50,19 @@ const BottomNavbar: React.FC = () => {
             </VStack>
           </NavLink>
         ))}
-        <NavLink href={'/profile'} _hover={{ bg: useColorModeValue('maroon.700', 'maroon.700') }}>
-          <Avatar
-            name={user?.name}
-            size='sm'
-            src={user?.picture}
-            _hover={{ border: '1px solid', borderColor: 'maroon.700' }}
-          />
+        <NavLink
+          href={'/profile'}
+          _hover={{ bg: useColorModeValue('maroon.700', 'maroon.700') }}
+          w='100%'
+        >
+          <Flex justifyContent='center'>
+            <Avatar
+              name={user?.name}
+              size='sm'
+              src={user?.picture}
+              _hover={{ border: '1px solid', borderColor: 'maroon.700' }}
+            />
+          </Flex>
         </NavLink>
       </HStack>
     </Box>
